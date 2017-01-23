@@ -28,46 +28,63 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.GenerateButton = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.RandomizeButton = new System.Windows.Forms.Button();
             this.ResultTextBox = new System.Windows.Forms.TextBox();
+            this.CreateOrderedButton = new System.Windows.Forms.Button();
+            this.OpenListButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // GenerateButton
+            // RandomizeButton
             // 
-            this.GenerateButton.Location = new System.Drawing.Point(12, 174);
-            this.GenerateButton.Name = "GenerateButton";
-            this.GenerateButton.Size = new System.Drawing.Size(75, 23);
-            this.GenerateButton.TabIndex = 0;
-            this.GenerateButton.Text = "Generate Numbers";
-            this.GenerateButton.UseVisualStyleBackColor = true;
-            this.GenerateButton.Click += new System.EventHandler(this.GenerateClick);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(197, 174);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.RandomizeButton.Location = new System.Drawing.Point(293, 223);
+            this.RandomizeButton.Name = "RandomizeButton";
+            this.RandomizeButton.Size = new System.Drawing.Size(117, 23);
+            this.RandomizeButton.TabIndex = 0;
+            this.RandomizeButton.Text = "Randomize Numbers";
+            this.RandomizeButton.UseVisualStyleBackColor = true;
+            this.RandomizeButton.Click += new System.EventHandler(this.RandomizeListButtonClick);
             // 
             // ResultTextBox
             // 
-            this.ResultTextBox.Location = new System.Drawing.Point(13, 127);
+            this.ResultTextBox.Location = new System.Drawing.Point(12, 59);
             this.ResultTextBox.Name = "ResultTextBox";
-            this.ResultTextBox.Size = new System.Drawing.Size(259, 20);
+            this.ResultTextBox.ReadOnly = true;
+            this.ResultTextBox.Size = new System.Drawing.Size(478, 20);
             this.ResultTextBox.TabIndex = 2;
+            this.ResultTextBox.TabStop = false;
+            this.ResultTextBox.Text = "Click \"Create List\" to generate a sorted list";
             this.ResultTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ResultTextBox.TextChanged += new System.EventHandler(this.ResultTextBox_TextChanged);
+            // 
+            // CreateOrderedButton
+            // 
+            this.CreateOrderedButton.Location = new System.Drawing.Point(293, 194);
+            this.CreateOrderedButton.Name = "CreateOrderedButton";
+            this.CreateOrderedButton.Size = new System.Drawing.Size(117, 23);
+            this.CreateOrderedButton.TabIndex = 3;
+            this.CreateOrderedButton.Text = "Create Sorted List";
+            this.CreateOrderedButton.UseVisualStyleBackColor = true;
+            this.CreateOrderedButton.Click += new System.EventHandler(this.CreateSortedButtonClick);
+            // 
+            // OpenListButton
+            // 
+            this.OpenListButton.Location = new System.Drawing.Point(293, 252);
+            this.OpenListButton.Name = "OpenListButton";
+            this.OpenListButton.Size = new System.Drawing.Size(117, 23);
+            this.OpenListButton.TabIndex = 4;
+            this.OpenListButton.Text = "Open List";
+            this.OpenListButton.UseVisualStyleBackColor = true;
+            this.OpenListButton.Click += new System.EventHandler(this.OpenListButton_Click);
             // 
             // RandomNumbersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(502, 300);
+            this.Controls.Add(this.OpenListButton);
+            this.Controls.Add(this.CreateOrderedButton);
             this.Controls.Add(this.ResultTextBox);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.GenerateButton);
+            this.Controls.Add(this.RandomizeButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "RandomNumbersForm";
@@ -80,9 +97,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Button GenerateButton;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button RandomizeButton;
         private System.Windows.Forms.TextBox ResultTextBox;
+        private System.Windows.Forms.Button CreateOrderedButton;
+        private System.Windows.Forms.Button OpenListButton;
     }
 }
 
