@@ -36,7 +36,7 @@
             // 
             // RandomizeButton
             // 
-            this.RandomizeButton.Location = new System.Drawing.Point(293, 223);
+            this.RandomizeButton.Location = new System.Drawing.Point(264, 204);
             this.RandomizeButton.Name = "RandomizeButton";
             this.RandomizeButton.Size = new System.Drawing.Size(117, 23);
             this.RandomizeButton.TabIndex = 0;
@@ -46,10 +46,11 @@
             // 
             // ResultTextBox
             // 
-            this.ResultTextBox.Location = new System.Drawing.Point(12, 59);
+            this.ResultTextBox.Location = new System.Drawing.Point(12, 54);
+            this.ResultTextBox.Multiline = true;
             this.ResultTextBox.Name = "ResultTextBox";
             this.ResultTextBox.ReadOnly = true;
-            this.ResultTextBox.Size = new System.Drawing.Size(478, 20);
+            this.ResultTextBox.Size = new System.Drawing.Size(398, 51);
             this.ResultTextBox.TabIndex = 2;
             this.ResultTextBox.TabStop = false;
             this.ResultTextBox.Text = "Click \"Create List\" to generate a sorted list";
@@ -58,7 +59,7 @@
             // 
             // CreateSortedButton
             // 
-            this.CreateSortedButton.Location = new System.Drawing.Point(293, 194);
+            this.CreateSortedButton.Location = new System.Drawing.Point(264, 175);
             this.CreateSortedButton.Name = "CreateSortedButton";
             this.CreateSortedButton.Size = new System.Drawing.Size(117, 23);
             this.CreateSortedButton.TabIndex = 3;
@@ -68,7 +69,7 @@
             // 
             // OpenListButton
             // 
-            this.OpenListButton.Location = new System.Drawing.Point(293, 252);
+            this.OpenListButton.Location = new System.Drawing.Point(264, 233);
             this.OpenListButton.Name = "OpenListButton";
             this.OpenListButton.Size = new System.Drawing.Size(117, 23);
             this.OpenListButton.TabIndex = 4;
@@ -80,7 +81,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(502, 300);
+            this.ClientSize = new System.Drawing.Size(422, 282);
             this.Controls.Add(this.OpenListButton);
             this.Controls.Add(this.CreateSortedButton);
             this.Controls.Add(this.ResultTextBox);
