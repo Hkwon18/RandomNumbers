@@ -30,7 +30,7 @@
         {
             this.RandomizeButton = new System.Windows.Forms.Button();
             this.ResultTextBox = new System.Windows.Forms.TextBox();
-            this.CreateOrderedButton = new System.Windows.Forms.Button();
+            this.CreateSortedButton = new System.Windows.Forms.Button();
             this.OpenListButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -56,15 +56,15 @@
             this.ResultTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.ResultTextBox.TextChanged += new System.EventHandler(this.ResultTextBox_TextChanged);
             // 
-            // CreateOrderedButton
+            // CreateSortedButton
             // 
-            this.CreateOrderedButton.Location = new System.Drawing.Point(293, 194);
-            this.CreateOrderedButton.Name = "CreateOrderedButton";
-            this.CreateOrderedButton.Size = new System.Drawing.Size(117, 23);
-            this.CreateOrderedButton.TabIndex = 3;
-            this.CreateOrderedButton.Text = "Create Sorted List";
-            this.CreateOrderedButton.UseVisualStyleBackColor = true;
-            this.CreateOrderedButton.Click += new System.EventHandler(this.CreateSortedButtonClick);
+            this.CreateSortedButton.Location = new System.Drawing.Point(293, 194);
+            this.CreateSortedButton.Name = "CreateSortedButton";
+            this.CreateSortedButton.Size = new System.Drawing.Size(117, 23);
+            this.CreateSortedButton.TabIndex = 3;
+            this.CreateSortedButton.Text = "Create Sorted List";
+            this.CreateSortedButton.UseVisualStyleBackColor = true;
+            this.CreateSortedButton.Click += new System.EventHandler(this.CreateSortedButtonClick);
             // 
             // OpenListButton
             // 
@@ -82,7 +82,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(502, 300);
             this.Controls.Add(this.OpenListButton);
-            this.Controls.Add(this.CreateOrderedButton);
+            this.Controls.Add(this.CreateSortedButton);
             this.Controls.Add(this.ResultTextBox);
             this.Controls.Add(this.RandomizeButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -99,7 +99,7 @@
 
         private System.Windows.Forms.Button RandomizeButton;
         private System.Windows.Forms.TextBox ResultTextBox;
-        private System.Windows.Forms.Button CreateOrderedButton;
+        private System.Windows.Forms.Button CreateSortedButton;
         private System.Windows.Forms.Button OpenListButton;
     }
 }

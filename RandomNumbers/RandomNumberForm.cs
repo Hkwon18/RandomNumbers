@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace RandomNumbers
@@ -11,20 +12,33 @@ namespace RandomNumbers
         public RandomNumbersForm()
         {
             InitializeComponent();
+            EnableControls();
             string filePath = getFilePath();
             if (File.Exists(filePath))
             {
-                RandomizeButton.Enabled = true;
-                OpenListButton.Enabled = true;
-                ResultTextBox.Text = "Welcome! Would you like to randomize the existing list?";
+                ResultTextBox.Text = 
+                    timeStampMessage("Welcome! Would you like to create a new sorted list or randomize the existing list?");
             }
             else
             {
-                RandomizeButton.Enabled = false;
-                OpenListButton.Enabled = false;
                 ResultTextBox.Text =
-                    "Welcome! A list textfile does not currently exist. Click \"Create Sorted List\" to create a new file";
+                    timeStampMessage("Welcome! A list textfile does not currently exist. Click \"Create Sorted List\" to create a new file");
             }
+        }
+
+        private void EnableControls()
+        {
+            bool fileExists = File.Exists(getFilePath());
+            RandomizeButton.Enabled = fileExists;
+            OpenListButton.Enabled = fileExists;
+            CreateSortedButton.Enabled = true;
+        }
+
+        private void DisableControls()
+        {
+            RandomizeButton.Enabled = false;
+            OpenListButton.Enabled = false;
+            CreateSortedButton.Enabled = false;
         }
 
         private string getFilePath()
@@ -32,23 +46,42 @@ namespace RandomNumbers
             return Path.Combine(Directory.GetCurrentDirectory(), "RandomList.txt");
         }
 
+        private string timeStampMessage(string message)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("[");
+            sb.Append(DateTime.Now.ToString("h:mm:ss tt"));
+            sb.Append("]: ");
+            sb.Append(message);
+            return sb.ToString();
+        }
+
         private List<int> CreateSortedList()
         {
             List<int> randomList = Enumerable.Range(1, 10000).ToList();
-            RandomizeButton.Enabled = true;
-            OpenListButton.Enabled = true;
             return randomList;
         }
 
-        private void PrintList(List<int> randomList)
+        private bool PrintList(List<int> randomList)
         {
             string outputPath = getFilePath();
             TextWriter tw = new StreamWriter(outputPath);
-            foreach (var num in randomList)
+            try
             {
-                tw.WriteLine(num.ToString());
+                foreach (var num in randomList)
+                {
+                    tw.WriteLine(num.ToString());
+                }
+                return true;
             }
-            tw.Close();
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                tw.Close();
+            }
         }
 
         private List<int> ReadList()
@@ -62,7 +95,7 @@ namespace RandomNumbers
             return null;
         }
 
-        public void FisherYatesShuffle(List<int> orderedList)
+        public bool FisherYatesShuffle(List<int> orderedList)
         {
             Random rng = new Random();
             int n = orderedList.Count;
@@ -74,50 +107,63 @@ namespace RandomNumbers
                 orderedList[n] = orderedList[k];
                 orderedList[k] = temp;
             }
+            return true;
         }
 
         private void CreateSortedButtonClick(object sender, EventArgs e)
         {
+            DisableControls();
             List<int> sortedList = CreateSortedList();
-            PrintList(sortedList);
-            string filePath = getFilePath();
-            if (File.Exists(filePath))
+            bool success = PrintList(sortedList);
+            if (success)
             {
-                RandomizeButton.Enabled = true;
-                OpenListButton.Enabled = true;
-                ResultTextBox.Text = "Sorted list created.";
+                ResultTextBox.Text = timeStampMessage("Sorted list created.");
             }
+            else
+            {
+                ResultTextBox.Text = timeStampMessage("Error. Sorted list could not be printed properly. Try again.");
+            }
+            EnableControls();
         }
 
         private void RandomizeListButtonClick(object sender, EventArgs e)
         {
+            DisableControls();
             List<int> orderedList = ReadList();
-            if (orderedList != null)
+            if (orderedList == null)
             {
-                FisherYatesShuffle(orderedList);
-                PrintList(orderedList);
-                ResultTextBox.Text = "Randomized! Click \"Open List\" to see the results!";
+                ResultTextBox.Text = timeStampMessage("No valid list was found. Please click \"Create List\"");
             }
             else
             {
-                ResultTextBox.Text = "No valid list was found. Please click \"Create List\"";
+                bool success = FisherYatesShuffle(orderedList);
+                success = PrintList(orderedList);
+                if (success)
+                {
+                    ResultTextBox.Text = timeStampMessage("Randomized! Click \"Open List\" to see the results!");
+                }
+                else
+                {
+                    ResultTextBox.Text = timeStampMessage("List could not be randomized and printed properly.");
+                }
             }
+            EnableControls();
         }
 
         private void OpenListButton_Click(object sender, EventArgs e)
         {
+            DisableControls();
             string filePath = getFilePath();
             if (File.Exists(filePath))
             {
                 System.Diagnostics.Process.Start(filePath);
             }
+            EnableControls();
         }
 
         private void ResultTextBox_TextChanged(object sender, EventArgs e)
         {
             
         }
-
-
     }
 }
